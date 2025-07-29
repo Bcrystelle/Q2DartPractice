@@ -1,1 +1,56 @@
-scenario2
+void main() {
+ 
+  double accountBalance = 1000.0;
+
+
+  int userChoice = 2; 
+
+  print("=== Welcome to Simple ATM ===");
+
+
+  if (userChoice == 1) {
+    print("Current operation: Check Balance");
+    print("Your Balance: ₱${accountBalance.toStringAsFixed(2)}");
+  } else if (userChoice == 2) {
+    print("Current operation: Deposit");
+    accountBalance = deposit(accountBalance, 250.00);
+  } else if (userChoice == 3) {
+    print("Current operation: Withdraw");
+    accountBalance = withdraw(accountBalance, 500.00);
+  } else {
+    print("Invalid operation. Please choose 1, 2, or 3.");
+  }
+
+
+  print("Final Balance: ₱${accountBalance.toStringAsFixed(2)}");
+}
+
+double deposit(double currentBalance, double amount) {
+
+  if (amount > 0) {
+    double newBalance = currentBalance + amount;
+    print('Deposited: ₱${amount.toStringAsFixed(2)}');
+    print('New Balance: ₱${newBalance.toStringAsFixed(2)}');
+    return newBalance;
+  } else {
+    print('Invalid deposit amount. Must be greater than 0.');
+    return currentBalance;
+  }
+}
+
+
+double withdraw(double currentBalance, double amount) {
+
+  if (amount > 0 && amount <= currentBalance) {
+    double newBalance = currentBalance - amount;
+    print('Withdrew: ₱${amount.toStringAsFixed(2)}');
+    print('New Balance: ₱${newBalance.toStringAsFixed(2)}');
+    return newBalance;
+  } else if (amount > currentBalance) {
+    print('Insufficient funds. Your balance is only ₱${currentBalance.toStringAsFixed(2)}');
+    return currentBalance;
+  } else {
+    print('Invalid withdrawal amount. Must be greater than 0.');
+    return currentBalance;
+  }
+}
